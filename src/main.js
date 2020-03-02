@@ -3,8 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
+import 'vue-awesome/icons/angle-left'
+import 'vue-awesome/icons/ellipsis-h'
+import Icon from 'vue-awesome/components/Icon'
 
+Vue.config.productionTip = false
+Vue.component('v-icon', Icon)
 new Vue({
   router,
   store,
