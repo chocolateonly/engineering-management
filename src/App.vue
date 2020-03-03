@@ -2,7 +2,7 @@
     <div id="app">
         <Header :title="title"/>
         <div class="flex-grow-1">
-            <router-view/>
+            <router-view test="rr"/>
         </div>
     </div>
 </template>
@@ -18,15 +18,18 @@
     components: {
       Header
     },
+    methods:{
+      changeHeaderTitle(){
+        switch (this.$router.currentRoute.name) {
+          default:this.title='工程管理平台'
+        }
+      }
+    },
     created(){
-      this.title='工程管理平台'
-
-
+      this.changeHeaderTitle()
     },
     updated(){
-      switch (this.$router.currentRoute.name) {
-        default:this.title='工程管理平台'
-      }
+      this.changeHeaderTitle()
     }
   }
 </script>
