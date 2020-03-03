@@ -1,15 +1,22 @@
 <template>
   <div class="em-manager">
-    <h1>This is an manager page</h1>
-      <div class="profile">
-          {{userInfo.name}}
-      </div>
+      <ProfileCard :userInfo="userInfo"/>
+      <News />
+      <Notification />
   </div>
 </template>
 <script>
     import {mapGetters,mapActions} from 'vuex'
+    import ProfileCard from './../components/ProfileCard'
+    import News from "../components/News";
+    import Notification from "../components/Notification";
   export default {
     name:'Manager',
+    components:{
+      Notification,
+      News,
+      ProfileCard
+    },
     methods:{
       ...mapActions(["getUserInfo"])
     },
