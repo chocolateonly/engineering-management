@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Header :title="title"/>
-        <div class="flex-grow-1">
+        <div class="app-content flex-grow-1">
             <router-view test="rr"/>
         </div>
     </div>
@@ -42,8 +42,13 @@
         color: #2c3e50;
         display: flex;
         flex-direction: column;
+        height: 100%;
+        overflow: hidden;
         .flex-grow-1 {
             flex-grow: 1;
+        }
+        .app-content{
+            overflow-y: auto;
         }
 
     }
