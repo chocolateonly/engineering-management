@@ -15,7 +15,11 @@
 
             <div class="em-blank"></div>
 
-            <div class="em-tab-content">
+            <div class="em-tab-content"
+                 v-infinite-scroll="loadMore"
+                 infinite-scroll-disabled="busy"
+                 infinite-scroll-distance="10"
+            >
                 <div class="em-projects-flow" v-if="activeIndex===1">
                     <div class="flow-item" v-for="(item,index) in getProjectFlow()" :key="index">
                         <div class="flow-item-line">
@@ -39,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="em-projects-list" v-else>
+                <div class="em-projects-list" v-else-if="activeIndex===2">
                     <div class="em-projects-item" v-for="item in getProjects()" :key="item.id">
                         <div class="item-status">
                             <span>{{item.type.substring(0,2)}}<br/>{{item.type.substring(2)}}</span>
@@ -56,12 +60,29 @@
                     </div>
                 </div>
 
+                <div class="em-projects-list" v-else>
+                    <div class="em-projects-item" v-for="(item,index) in data" :key="item.id | getKey(index)">
+                        <div class="item-status">
+                            <span>{{item.type.substring(0,2)}}<br/>{{item.type.substring(2)}}</span>
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-title">{{item.title}}</h4>
+                            <div class="item-address">项目地址：{{item.address}}</div>
+                            <div class="item-time">
+                                <div class="work-time">施工时间：{{item.time}}</div>
+                                <div class="create-time">{{item.createdAt}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+  import infiniteScroll from 'vue-infinite-scroll'
   export default {
     name: "MyProjects",
     props: {
@@ -70,7 +91,15 @@
     data() {
       return {
         tabs: ['待开工', '进行中', '已验收'],
-        activeIndex: 0
+        activeIndex: 0,
+
+        busy:false,
+        data:this.projects
+      }
+    },
+    filters:{
+      getKey(val,arg){
+        return `${val}-${arg}`
       }
     },
     methods: {
@@ -83,8 +112,17 @@
       getProjectFlow() {
         const pros = this.projects.filter(project => project.status === this.tabs[1])
         return pros[1].flow
+      },
+      loadMore: function() {
+        this.busy = true;
+        console.log('loadmore')
+        setTimeout(() => {
+          this.data=[...this.data,...this.projects]
+          this.busy = false;
+        }, 1000);
       }
-    }
+    },
+    directives:{infiniteScroll}
   }
 </script>
 

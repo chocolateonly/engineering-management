@@ -13,6 +13,11 @@ import Icon from 'vue-awesome/components/Icon'
 
 Vue.config.productionTip = false
 Vue.component('v-icon', Icon)
+Vue.directive('focus',{
+  inserted(el){
+    el.focus()
+  }
+})
 new Vue({
   router,
   store,
