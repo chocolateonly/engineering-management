@@ -1,7 +1,12 @@
 <template>
     <div class="about"
          style="position: relative;height: 100%;overflow-y: auto;"
-    @scroll="onScroll">
+
+    >
+        <div     @touchstart="touchStart1"
+                 @touchsmove="touchMove1"
+                 @touchsend="touchEnd1">
+
         <ul class="box_fixed" id="boxFixed" :class="{'is_fixed' : isFixed}"></ul>
         <h1>This is an boss page</h1>
 
@@ -16,21 +21,30 @@
            >{{count}}item</li>
         </ul>
         <div id="scroll-list" >
+            <Loading :isLoading="loading"/>
             <div style="height: 200px"
                  v-for="count in counts"
                  :key="count"
                  :class="{'step-jump':true,'activeStep':activeStep===count-1}"
             >{{count}}item</div>
+
+        </div>
+
         </div>
     </div>
 </template>
 <script>
+  import Loading from "../components/Loading";
   export default {
+    components: {Loading},
     data() {
       return {
         counts: 4,
         isFixed: false,
-        activeStep:0
+        activeStep:0,
+        loading:true,
+
+        scrollTop:0
       }
     },
     methods: {
@@ -46,7 +60,19 @@
         // Chrome
         document.querySelector('.about').scrollTop = total-100
       },
+      touchStart1(e){
+        console.log('start')
+        console.log(e.targetTouches[0].pageY)
+      },
+      touchMove1(e){
+        console.log('move')
+        console.log(e)
+      },
+      touchEnd1(){
+console.log('end')
+      },
       onScroll(e) {
+        this.scrollTop=e.srcElement.scrollTop
         //滚动监听活跃项
         const anchors=document.querySelectorAll('.step-jump')
         anchors.forEach((item,index)=>{
