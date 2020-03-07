@@ -3,7 +3,7 @@
       <ProfileCard :userInfo="userInfo"/>
       <News />
       <Notification />
-      <MyProjects  :projects="userInfo.projects"/>
+      <MyProjects  :projects="userInfo.projects" />
   </div>
 </template>
 <script>

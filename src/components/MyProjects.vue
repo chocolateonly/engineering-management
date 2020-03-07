@@ -15,11 +15,7 @@
 
             <div class="em-blank"></div>
 
-            <div class="em-tab-content"
-                 v-infinite-scroll="loadMore"
-                 infinite-scroll-disabled="busy"
-                 infinite-scroll-distance="10"
-            >
+            <div class="em-tab-content">
                 <div class="em-projects-flow" v-if="activeIndex===1">
                     <div class="flow-item" v-for="(item,index) in getProjectFlow()" :key="index">
                         <div class="flow-item-line">
@@ -61,7 +57,7 @@
                 </div>
 
                 <div class="em-projects-list" v-else>
-                    <div class="em-projects-item" v-for="(item,index) in data" :key="item.id | getKey(index)">
+                    <div class="em-projects-item" v-for="(item,index) in projects" :key="item.id | getKey(index)">
                         <div class="item-status">
                             <span>{{item.type.substring(0,2)}}<br/>{{item.type.substring(2)}}</span>
                         </div>
@@ -82,7 +78,6 @@
 </template>
 
 <script>
-  import infiniteScroll from 'vue-infinite-scroll'
   export default {
     name: "MyProjects",
     props: {
@@ -94,7 +89,6 @@
         activeIndex: 0,
 
         busy:false,
-        data:this.projects
       }
     },
     filters:{
@@ -111,18 +105,9 @@
       },
       getProjectFlow() {
         const pros = this.projects.filter(project => project.status === this.tabs[1])
-        return pros[1].flow
-      },
-      loadMore: function() {
-        this.busy = true;
-        console.log('loadmore')
-        setTimeout(() => {
-          this.data=[...this.data,...this.projects]
-          this.busy = false;
-        }, 1000);
+        return pros[1]?pros[1].flow:[]
       }
-    },
-    directives:{infiniteScroll}
+    }
   }
 </script>
 

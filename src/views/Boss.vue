@@ -28,7 +28,7 @@
   export default {
     data() {
       return {
-        counts: 10,
+        counts: 4,
         isFixed: false,
         activeStep:0
       }
@@ -36,7 +36,7 @@
     methods: {
       loadMore() {
         console.log('moremore')
-        //this.counts+=10
+        this.counts+=10
       },
       jump(count){
         const index=count-1
