@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 //ui
-import 'iview/dist/styles/iview.css';
+//import 'iview/dist/styles/iview.css';
 
 import { Button } from 'element-ui';
 

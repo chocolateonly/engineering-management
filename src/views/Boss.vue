@@ -9,10 +9,14 @@
             <h1>This is an boss page</h1>
 
             <input type="text" v-focus v-demo="'test'">
-            <div>
+      <!--      <div>
                 <Checkbox :checked.sync="single">Checkbox</Checkbox>
-            </div>
+            </div>-->
             <el-button>默认按钮</el-button>
+            <div>
+
+                <i class="fa fa-angle-right fa-2x" />
+            </div>
             <ul class="a-item" style="position: fixed;">
                 <li
                         v-for="count in counts"
@@ -40,10 +44,12 @@
 <script>
   import Loading from "../components/DropDownRefresh";
   import PullUpReload from "../components/PullUpReload";
-  import Checkbox from 'iview/src/components/checkbox';
+  //import Checkbox from 'iview/src/components/checkbox';
 
   export default {
-    components: {PullUpReload, Loading, Checkbox},
+    components: {PullUpReload, Loading,
+      //Checkbox
+    },
     data() {
       return {
         counts: 0,
@@ -59,7 +65,7 @@
     methods: {
       loadMore(done = () => null) {
         setTimeout(() => {
-          console.log('moremore')
+          //console.log('moremore')
           this.counts += 10
           if (this.counts <= 10) {
             this.pullUpState = 1
@@ -72,7 +78,7 @@
       },
       onRefresh(done) {
         setTimeout(() => {
-          console.log('refresh')
+          //console.log('refresh')
           done()
         }, 2000)
       },
@@ -112,9 +118,9 @@
     },
     directives: {
       'demo': {
-        bind(el, binding) {
-          console.log(binding.value)
-        }
+       // bind(el, binding) {
+          //console.log(binding.value)
+        //}
       }
     },
 
