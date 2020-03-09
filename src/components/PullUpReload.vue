@@ -156,7 +156,19 @@ watch:{
 </script>
 
 <style scoped>
-.load-more{
-    height: 100px;
-}
+    .load-more {
+        width: 100%;
+        color: #c0c0c0;
+        background: #fafafa;
+        font-size: 24px;
+    }
+
+    .more-tip,
+    .loading-tip,
+    .no-more-tip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+    }
 </style>
