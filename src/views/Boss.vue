@@ -17,7 +17,7 @@
 
                 <i class="fa fa-angle-right fa-2x" />
             </div>
-            <ul class="a-item" style="position: fixed;">
+            <ul class="a-item" style="position: fixed;z-index:99">
                 <li
                         v-for="count in counts"
                         :key="count"
@@ -31,6 +31,7 @@
                     <div style="height: 200px"
                          v-for="count in counts"
                          :key="count"
+                         @click="testChildClick"
                          :class="{'step-jump':true,'activeStep':activeStep===count-1}"
                     >{{count}}item
                     </div>
@@ -63,6 +64,9 @@
       }
     },
     methods: {
+      testChildClick(){
+        console.log('clickkkk')
+      },
       loadMore(done = () => null) {
         setTimeout(() => {
           //console.log('moremore')
