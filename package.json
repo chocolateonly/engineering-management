@@ -10,11 +10,12 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
-    "iview": "^3.5.4",
+    "vant": "^2.5.4",
     "vue": "^2.6.11",
     "vue-awesome": "^4.0.2",
     "vue-router": "^3.1.5",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "vux": "^2.9.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
@@ -24,6 +25,7 @@
     "@vue/cli-service": "~4.2.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-component": "^1.1.1",
+    "babel-plugin-import": "^1.13.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
     "less": "^3.0.4",

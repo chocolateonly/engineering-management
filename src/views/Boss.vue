@@ -9,13 +9,15 @@
             <h1>This is an boss page</h1>
 
             <input type="text" v-focus v-demo="'test'">
-      <!--      <div>
-                <Checkbox :checked.sync="single">Checkbox</Checkbox>
-            </div>-->
+            <!--      <div>
+                      <Checkbox :checked.sync="single">Checkbox</Checkbox>
+                  </div>-->
             <el-button>默认按钮</el-button>
+
+            <vanbutton type="primary">主要按钮</vanbutton>
             <div>
 
-                <i class="fa fa-angle-right fa-2x" />
+                <i class="fa fa-angle-right fa-2x"/>
             </div>
             <ul class="a-item" style="position: fixed;z-index:99">
                 <li
@@ -45,10 +47,14 @@
 <script>
   import Loading from "../components/DropDownRefresh";
   import PullUpReload from "../components/PullUpReload";
-  //import Checkbox from 'iview/src/components/checkbox';
+
+  import {Button} from 'vant';
 
   export default {
-    components: {PullUpReload, Loading,
+
+    components: {
+      PullUpReload, Loading,
+      'vanbutton': Button
       //Checkbox
     },
     data() {
@@ -64,7 +70,7 @@
       }
     },
     methods: {
-      testChildClick(){
+      testChildClick() {
         console.log('clickkkk')
       },
       loadMore(done = () => null) {
@@ -122,8 +128,8 @@
     },
     directives: {
       'demo': {
-       // bind(el, binding) {
-          //console.log(binding.value)
+        // bind(el, binding) {
+        //console.log(binding.value)
         //}
       }
     },
